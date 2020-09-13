@@ -1,0 +1,9 @@
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem02.Stack\bin\Debug\netcoreapp3.1\Problem02.Stack.deps.json
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem02.Stack\bin\Debug\netcoreapp3.1\Problem02.Stack.dll
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem02.Stack\bin\Debug\netcoreapp3.1\Problem02.Stack.pdb
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem02.Stack\obj\Debug\netcoreapp3.1\Problem02.Stack.AssemblyInfoInputs.cache
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem02.Stack\obj\Debug\netcoreapp3.1\Problem02.Stack.AssemblyInfo.cs
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem02.Stack\obj\Debug\netcoreapp3.1\Problem02.Stack.csproj.CoreCompileInputs.cache
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem02.Stack\obj\Debug\netcoreapp3.1\Problem02.Stack.dll
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem02.Stack\obj\Debug\netcoreapp3.1\Problem02.Stack.pdb
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem02.Stack\obj\Debug\netcoreapp3.1\Problem02.Stack.csprojAssemblyReference.cache

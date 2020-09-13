@@ -1,0 +1,9 @@
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem04.SinglyLinkedList\bin\Debug\netcoreapp3.1\Problem04.SinglyLinkedList.deps.json
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem04.SinglyLinkedList\bin\Debug\netcoreapp3.1\Problem04.SinglyLinkedList.dll
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem04.SinglyLinkedList\bin\Debug\netcoreapp3.1\Problem04.SinglyLinkedList.pdb
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem04.SinglyLinkedList\obj\Debug\netcoreapp3.1\Problem04.SinglyLinkedList.csprojAssemblyReference.cache
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem04.SinglyLinkedList\obj\Debug\netcoreapp3.1\Problem04.SinglyLinkedList.AssemblyInfoInputs.cache
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem04.SinglyLinkedList\obj\Debug\netcoreapp3.1\Problem04.SinglyLinkedList.AssemblyInfo.cs
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem04.SinglyLinkedList\obj\Debug\netcoreapp3.1\Problem04.SinglyLinkedList.csproj.CoreCompileInputs.cache
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem04.SinglyLinkedList\obj\Debug\netcoreapp3.1\Problem04.SinglyLinkedList.dll
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem04.SinglyLinkedList\obj\Debug\netcoreapp3.1\Problem04.SinglyLinkedList.pdb

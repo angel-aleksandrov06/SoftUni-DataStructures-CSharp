@@ -1,0 +1,9 @@
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem01.List\bin\Debug\netcoreapp3.1\Problem01.List.deps.json
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem01.List\bin\Debug\netcoreapp3.1\Problem01.List.dll
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem01.List\bin\Debug\netcoreapp3.1\Problem01.List.pdb
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem01.List\obj\Debug\netcoreapp3.1\Problem01.List.csprojAssemblyReference.cache
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem01.List\obj\Debug\netcoreapp3.1\Problem01.List.AssemblyInfoInputs.cache
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem01.List\obj\Debug\netcoreapp3.1\Problem01.List.AssemblyInfo.cs
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem01.List\obj\Debug\netcoreapp3.1\Problem01.List.csproj.CoreCompileInputs.cache
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem01.List\obj\Debug\netcoreapp3.1\Problem01.List.dll
+D:\GitHub\DataStructures-CSharp\DataStructures-Fundamentals\LinearDataStructures - Lab\Problem01.List\obj\Debug\netcoreapp3.1\Problem01.List.pdb

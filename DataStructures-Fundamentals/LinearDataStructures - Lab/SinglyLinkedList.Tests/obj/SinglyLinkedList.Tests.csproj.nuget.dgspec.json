@@ -1,0 +1,136 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\GitHub\\DataStructures-CSharp\\DataStructures-Fundamentals\\LinearDataStructures - Lab\\SinglyLinkedList.Tests\\SinglyLinkedList.Tests.csproj": {}
+  },
+  "projects": {
+    "D:\\GitHub\\DataStructures-CSharp\\DataStructures-Fundamentals\\LinearDataStructures - Lab\\Problem04.SinglyLinkedList\\Problem04.SinglyLinkedList.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\GitHub\\DataStructures-CSharp\\DataStructures-Fundamentals\\LinearDataStructures - Lab\\Problem04.SinglyLinkedList\\Problem04.SinglyLinkedList.csproj",
+        "projectName": "Problem04.SinglyLinkedList",
+        "projectPath": "D:\\GitHub\\DataStructures-CSharp\\DataStructures-Fundamentals\\LinearDataStructures - Lab\\Problem04.SinglyLinkedList\\Problem04.SinglyLinkedList.csproj",
+        "packagesPath": "C:\\Users\\Angel\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\DataStructures-CSharp\\DataStructures-Fundamentals\\LinearDataStructures - Lab\\Problem04.SinglyLinkedList\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Angel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\GitHub\\DataStructures-CSharp\\DataStructures-Fundamentals\\LinearDataStructures - Lab\\SinglyLinkedList.Tests\\SinglyLinkedList.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\GitHub\\DataStructures-CSharp\\DataStructures-Fundamentals\\LinearDataStructures - Lab\\SinglyLinkedList.Tests\\SinglyLinkedList.Tests.csproj",
+        "projectName": "SinglyLinkedList.Tests",
+        "projectPath": "D:\\GitHub\\DataStructures-CSharp\\DataStructures-Fundamentals\\LinearDataStructures - Lab\\SinglyLinkedList.Tests\\SinglyLinkedList.Tests.csproj",
+        "packagesPath": "C:\\Users\\Angel\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\DataStructures-CSharp\\DataStructures-Fundamentals\\LinearDataStructures - Lab\\SinglyLinkedList.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Angel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\GitHub\\DataStructures-CSharp\\DataStructures-Fundamentals\\LinearDataStructures - Lab\\Problem04.SinglyLinkedList\\Problem04.SinglyLinkedList.csproj": {
+                "projectPath": "D:\\GitHub\\DataStructures-CSharp\\DataStructures-Fundamentals\\LinearDataStructures - Lab\\Problem04.SinglyLinkedList\\Problem04.SinglyLinkedList.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.4.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[3.15.1, )"
+            },
+            "nunit": {
+              "target": "Package",
+              "version": "[3.12.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
