@@ -104,8 +104,6 @@
 
                 lastNode = currNode.Next;
                 currNode.Next = null;
-
-                
             }
 
             this.Count--;
