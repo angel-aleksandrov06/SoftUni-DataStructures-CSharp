@@ -1,5 +1,4 @@
-﻿
-namespace _03.AVL
+﻿namespace _03.AVL
 {
     using System;
 
@@ -18,14 +17,78 @@ namespace _03.AVL
             this.Root = this.Insert(this.Root, item);
         }
 
-        public void Delete(int v)
+        public void Delete(T v)
         {
-            throw new NotImplementedException();
+            if (Contains(v))
+            {
+                this.Root = this.Remove(this.Root, v);
+                this.UpdateHeight(this.Root);
+            }
+        }
+
+        private Node<T> Remove(Node<T> node, T item)
+        {
+            if (node == null)
+            {
+                return null;
+            }
+
+            int cmp = item.CompareTo(node.Value);
+            if (cmp < 0)
+            {
+                node.Left = this.Remove(node.Left, item);
+                this.UpdateHeight(node);
+
+            }
+            else if (cmp > 0)
+            {
+                node.Right = this.Remove(node.Right, item);
+                this.UpdateHeight(node);
+
+            }
+
+            if (cmp == 0)
+            {
+                // no children
+                if (node.Left == null && node.Right == null)
+                    return null;
+
+                // Is there only left child
+                if (node.Left != null && node.Right == null)
+                    return node.Left;
+
+                // Is there only right child
+                if (node.Left == null && node.Right != null)
+                    return node.Right;
+
+                if (node.Left.Height > node.Right.Height)
+                {
+                    var replacement = this.Greatest(node.Left);
+                    node.Value = replacement.Value;
+                    node.Left = Remove(node.Left, replacement.Value);
+                    this.UpdateHeight(node.Left);
+                    this.UpdateHeight(node);
+                }
+                else
+                {
+                    var replacement = this.Smallest(node.Right);
+                    node.Value = replacement.Value;
+                    node.Right = Remove(node.Right, replacement.Value);
+                    this.UpdateHeight(node.Right);
+                    this.UpdateHeight(node);
+                }
+            }
+
+            return this.Balance(node);
         }
 
         public void DeleteMin()
         {
-            throw new NotImplementedException();
+            if (this.Root != null)
+            {
+                var smallestElement = this.Smallest(this.Root);
+                this.Delete(smallestElement.Value);
+            }
         }
 
         public void EachInOrder(Action<T> action)
@@ -84,7 +147,10 @@ namespace _03.AVL
 
         private void UpdateHeight(Node<T> node)
         {
-            node.Height = Math.Max(Height(node.Left), Height(node.Right)) + 1;
+            if (node != null)
+            {
+                node.Height = Math.Max(Height(node.Left), Height(node.Right)) + 1;
+            }
         }
 
         private Node<T> Search(Node<T> node, T item)
@@ -149,6 +215,40 @@ namespace _03.AVL
             UpdateHeight(node);
 
             return right;
+        }
+
+        private Node<T> Smallest(Node<T> node)
+        {
+            if (node == null)
+            {
+                return null;
+            }
+
+            if (node.Left != null)
+            {
+                return this.Smallest(node.Left);
+            }
+            else
+            {
+                return node;
+            }
+        }
+
+        private Node<T> Greatest(Node<T> node)
+        {
+            if (node == null)
+            {
+                return null;
+            }
+
+            if (node.Right != null)
+            {
+                return this.Greatest(node.Right);
+            }
+            else
+            {
+                return node;
+            }
         }
     }
 }
