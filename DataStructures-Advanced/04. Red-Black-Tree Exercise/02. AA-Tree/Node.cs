@@ -6,13 +6,15 @@ namespace _02._AA_Tree
     {
         public Node(T element)
         {
-            this.Element = element;
+            this.Value = element;
             this.Level = 1;
+            this.Count = 1;
         }
 
-        public T Element { get; set; }
+        public T Value { get; set; }
         public Node<T> Right { get; set; }
         public Node<T> Left { get; set; }
         public int Level { get; set; }
+        public int Count { get; set; }
     }
 }
