@@ -178,13 +178,13 @@
                 node.Right = this.Insert(element, node.Right);
             }
 
-            // Rotate right
-            if (this.IsRed(node.Left) && IsRed(node.Left.Left))
-                node = this.RotateRight(node);
-
             // Rotate left
             if (this.IsRed(node.Right) && !IsRed(node.Left))
                 node = this.RotateLeft(node);
+
+            // Rotate right
+            if (this.IsRed(node.Left) && IsRed(node.Left.Left))
+                node = this.RotateRight(node);
 
             // Flip colors
             if (this.IsRed(node.Left) && this.IsRed(node.Right))
@@ -209,7 +209,7 @@
             node.Right = temp.Left;
             temp.Left = node;
 
-            node.Color = RED;
+            node.Color = node.Color;
             temp.Color = BLACK;
             node.Count = 1 + this.Count(node.Left) + this.Count(node.Right);
 
