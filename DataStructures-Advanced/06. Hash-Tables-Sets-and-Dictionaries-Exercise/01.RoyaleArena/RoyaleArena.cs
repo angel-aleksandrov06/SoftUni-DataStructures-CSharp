@@ -8,185 +8,209 @@ namespace _01.RoyaleArena
 
     public class RoyaleArena : IArena
     {
-        private readonly Dictionary<int, BattleCard> byId = new Dictionary<int, BattleCard>();
-        private readonly Dictionary<CardType, OrderedBag<BattleCard>> byType = new Dictionary<CardType, OrderedBag<BattleCard>>();
+        private Dictionary<int, BattleCard> cards;
+        private Dictionary<CardType, Table<BattleCard>> cardTypeSortedByDamage;
+        private Dictionary<string, Table<BattleCard>> cardNameSortedBySawg;
+        private Table<BattleCard> cardsSortedBySwag;
 
-        public int Count
-            => this.byId.Count;
+        public RoyaleArena()
+        {
+            this.cards = new Dictionary<int, BattleCard>();
+            this.cardTypeSortedByDamage = new Dictionary<CardType, Table<BattleCard>>();
+            this.cardNameSortedBySawg = new Dictionary<string, Table<BattleCard>>();
+            this.cardsSortedBySwag = new Table<BattleCard>(new SwagIndex());
+        }
 
         public void Add(BattleCard card)
         {
-            if (card == null || this.Contains(card))
+            if (!this.Contains(card))
             {
-                return;
+                this.cards[card.Id] = card;
             }
 
-            // By Id
-            this.byId[card.Id] = card;
-
-            // By Type
-            if (!this.byType.ContainsKey(card.Type))
-            {
-                this.byType[card.Type] = new OrderedBag<BattleCard>();
-            }
-            this.byType[card.Type].Add(card);
+            this.AddToSearchableCollection<DamageIndex>(this.cardTypeSortedByDamage, card, c => c.Type);
+            this.AddToSearchableCollection<SwagIndex>(this.cardNameSortedBySawg, card, c => c.Name);
+            this.cardsSortedBySwag.Add(card);
         }
 
-        public void ChangeCardType(int id, CardType type)
+        private void AddToSearchableCollection<T>(IDictionary dictionary, BattleCard card, Func<BattleCard, object> getKey)
+            where T : Index<double>, new()
         {
-            if (!this.byId.ContainsKey(id))
+            var key = getKey(card);
+
+            if (dictionary[key] == null)
             {
-                throw new ArgumentException();
+                dictionary[key] = new Table<BattleCard>(new T());
             }
 
-            var card = this.byId[id];
-            if (card.Type == type) // no change
-            {
-                return;
-            }
-
-            card.Type = type;
+            (dictionary[key] as Table<BattleCard>).Add(card);
         }
 
         public bool Contains(BattleCard card)
-            => card != null
-            && this.byId.ContainsKey(card.Id);
-
-        public IEnumerable<BattleCard> FindFirstLeastSwag(int n)
         {
-            if (n < 0 || n > this.Count)
-            {
-                throw new InvalidOperationException();
-            }
-
-            return this.byId.Values
-                .OrderBy(c => c.Swag)
-                .ThenBy(c => c.Id)
-                .Take(n);
+            return this.cards.ContainsKey(card.Id);
         }
 
-        public IEnumerable<BattleCard> GetAllByNameAndSwag()
+        public int Count => this.cards.Count;
+
+        public void ChangeCardType(int id, CardType type)
         {
-            var result = new List<BattleCard>();
+            this.CardNotExistException(id);
 
-            this.byId.Values
-                 .GroupBy(c => c.Name)
-                 .ToList()
-                 .ForEach(group => result.Add(group.OrderBy(c => c).First()));
-
-            return result;
-        }
-
-        public IEnumerable<BattleCard> GetAllInSwagRange(double lo, double hi)
-             => this.byId.Values
-            .Where(c => lo <= c.Swag && c.Swag <= hi)
-            .OrderBy(c => c.Swag);
-
-        public IEnumerable<BattleCard> GetByCardType(CardType type)
-        {
-            this.ValidateWithException(type);
-
-            return this.byType[type];
-        }
-
-        public IEnumerable<BattleCard> GetByCardTypeAndMaximumDamage(CardType type, double damage)
-        {
-            this.ValidateWithException(type);
-
-            var result = this.byType[type]
-                .Where(c => c.Damage <= damage);
-
-            this.ValidateWithException(result);
-
-            return result;
+            BattleCard card = this.cards[id];
+            this.RemoveFromSearchableCollection(this.cardTypeSortedByDamage, card, c => c.Type);
+            card.Type = type;
+            this.AddToSearchableCollection<DamageIndex>(this.cardTypeSortedByDamage, card, c => c.Type);
         }
 
         public BattleCard GetById(int id)
         {
-            if (!this.byId.ContainsKey(id))
+            this.CardNotExistException(id);
+
+            return this.cards[id];
+        }
+
+        private void CardNotExistException(int id)
+        {
+            if (!this.cards.ContainsKey(id))
             {
                 throw new InvalidOperationException();
             }
-
-            return this.byId[id];
-        }
-
-        public IEnumerable<BattleCard> GetByNameAndSwagRange(string name, double lo, double hi)
-        {
-            var result = this.byId.Values
-                .Where(c => c.Name == name)
-                .Where(c => lo <= c.Swag && c.Swag < hi)
-                .OrderByDescending(c => c.Swag)
-                .ThenBy(c => c.Id);
-
-            this.ValidateWithException(result);
-
-            return result;
-        }
-
-        public IEnumerable<BattleCard> GetByNameOrderedBySwagDescending(string name)
-        {
-            var result = this.byId.Values
-                .Where(c => c.Name == name)
-                .OrderByDescending(c => c.Swag)
-                .ThenBy(c => c.Id);
-
-            this.ValidateWithException(result);
-
-            return result;
-        }
-
-        public IEnumerable<BattleCard> GetByTypeAndDamageRangeOrderedByDamageThenById(CardType type, int lo, int hi)
-        {
-            this.ValidateWithException(type);
-
-            return this.byType[type]
-                .Where(c => lo < c.Damage && c.Damage < hi);
         }
 
         public void RemoveById(int id)
         {
-            if (!this.byId.ContainsKey(id))
+            this.CardNotExistException(id);
+            BattleCard card = this.cards[id];
+
+            this.RemoveFromSearchableCollection(this.cardTypeSortedByDamage, card, c => c.Type);
+            this.RemoveFromSearchableCollection(this.cardNameSortedBySawg, card, c => c.Name);
+            this.cardsSortedBySwag.Remove(card);
+            this.cards.Remove(id);
+        }
+
+        private void RemoveFromSearchableCollection(IDictionary dictionary, BattleCard card, Func<BattleCard, object> getKey)
+        {
+            var key = getKey(card);
+
+            (dictionary[key] as Table<BattleCard>).Remove(card);
+            if (!(dictionary[key] as Table<BattleCard>).Any())
+            {
+                dictionary.Remove(key);
+            }
+        }
+
+        public IEnumerable<BattleCard> GetByCardType(CardType type)
+        {
+            if (!this.cardTypeSortedByDamage.ContainsKey(type))
             {
                 throw new InvalidOperationException();
             }
 
-            var card = this.byId[id];
+            IEnumerable<BattleCard> cardsByType = this.cardTypeSortedByDamage[type];
 
-            this.byId.Remove(id);
+            this.CollectionEmtyException(cardsByType);
 
-            this.byType[card.Type].Remove(card);
-            if (!this.byType[card.Type].Any())
+            return cardsByType;
+        }
+
+        public IEnumerable<BattleCard> GetByTypeAndDamageRangeOrderedByDamageThenById(CardType type, int lo, int hi)
+        {
+            if (!this.cardTypeSortedByDamage.ContainsKey(type))
             {
-                this.byType.Remove(card.Type);
+                throw new InvalidOperationException();
+            }
+
+            IEnumerable<BattleCard> cardsByTypeInDamageRange =
+                this.cardTypeSortedByDamage[type]
+                .GetViewBetween(lo, hi)
+                .OrderBy(c => c);
+
+            this.CollectionEmtyException(cardsByTypeInDamageRange);
+
+            return cardsByTypeInDamageRange;
+        }
+
+        private void CollectionEmtyException(IEnumerable<BattleCard> battleCards)
+        {
+            if (!battleCards.Any())
+            {
+                throw new InvalidOperationException();
             }
         }
+
+        public IEnumerable<BattleCard> GetByCardTypeAndMaximumDamage(CardType type, double damage)
+        {
+            if (!this.cardTypeSortedByDamage.ContainsKey(type))
+            {
+                throw new InvalidOperationException();
+            }
+
+            IEnumerable<BattleCard> cardsByTypeAndMaxDamage = this.cardTypeSortedByDamage[type]
+                .Where(c => c.Damage <= damage)
+                .OrderBy(c => c);
+
+            this.CollectionEmtyException(cardsByTypeAndMaxDamage);
+
+            return cardsByTypeAndMaxDamage;
+        }
+
+        public IEnumerable<BattleCard> GetByNameOrderedBySwagDescending(string name)
+        {
+            if (!this.cardNameSortedBySawg.ContainsKey(name))
+            {
+                throw new InvalidOperationException();
+            }
+
+            IEnumerable<BattleCard> cardsByName = this.cardNameSortedBySawg[name];
+
+            this.CollectionEmtyException(cardsByName);
+
+            return cardsByName;
+        }
+
+        public IEnumerable<BattleCard> GetByNameAndSwagRange(string name, double lo, double hi)
+        {
+            if (!this.cardNameSortedBySawg.ContainsKey(name))
+            {
+                throw new InvalidOperationException();
+            }
+
+            IEnumerable<BattleCard> cardsByNameInSwagRange = this.cardNameSortedBySawg[name]?.GetViewBetween(lo, hi);
+
+            this.CollectionEmtyException(cardsByNameInSwagRange);
+
+            return cardsByNameInSwagRange;
+        }
+
+        public IEnumerable<BattleCard> FindFirstLeastSwag(int n)
+        {
+            if (n > this.Count)
+            {
+                throw new InvalidOperationException();
+            }
+
+            IEnumerable<BattleCard> cardsByLeastSwag = this.cardsSortedBySwag.GetFirstN(n, c => c.Id);
+
+            return cardsByLeastSwag;
+        }
+
+        public IEnumerable<BattleCard> GetAllInSwagRange(double lo, double hi)
+        {
+            IEnumerable<BattleCard> cardsInSwagRange = this.cardsSortedBySwag.GetViewBetween(lo, hi);
+
+            return cardsInSwagRange;
+        }
+
 
         public IEnumerator<BattleCard> GetEnumerator()
         {
-            foreach (var card in this.byId.Values)
-            {
-                yield return card;
-            }
+            return this.cards.Values.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
-            => this.GetEnumerator();
-
-        private void ValidateWithException(CardType type)
         {
-            if (!this.byType.ContainsKey(type))
-            {
-                throw new InvalidOperationException();
-            }
-        }
-
-        private void ValidateWithException<T>(IEnumerable<T> result)
-        {
-            if (!result.Any())
-            {
-                throw new InvalidOperationException();
-            }
+            return GetEnumerator();
         }
     }
 }
